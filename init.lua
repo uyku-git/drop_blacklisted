@@ -10,14 +10,6 @@ minetest.register_chatcommand("drop", {
         end
 
         blacklist[name] = param
-
-        -- Remove lator
-        local blacklisted_string = name .. "'s blacklisted drops: "
-        for _, v in ipairs(blacklist[name]) do
-            v = v .. " "
-            blacklisted_string = blacklisted_string .. v
-        end
-        minetest.log(blacklisted_string)
     end
 })
 

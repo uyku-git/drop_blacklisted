@@ -3,5 +3,5 @@ This mod adds the /drop [param...] command, which sets a blacklist for unwanted 
 
 /drop default:cobble default:silver_sand
 
-Each player has their own blacklist. For now, every blacklist is reset when the game resets.
+Each player has their own blacklist. For now, every blacklist is reset when the server resets.
 

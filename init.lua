@@ -1,5 +1,10 @@
 local blacklist = { }
+minetest.register_privilege("drop", {
+    description = "Don't add the specified drop(s) to the inventory when digging. Example: /drop default:cobble default:sand",
+})
+
 minetest.register_chatcommand("drop", {
+    privs = { drop = true },
     params = "[param...]",
     description = "Don't add the specified drop(s) to the inventory when digging. Example: /drop default:cobble default:sand",
     func = function(name, param)
@@ -58,7 +63,9 @@ end
 
 local old_handle_node_drops = minetest.handle_node_drops
 function minetest.handle_node_drops(pos, drops, player)
-    if not player or player.is_fake_player then
+    if not player
+    or player.is_fake_player
+    or not minetest.check_player_privs(player, "drop") then
         -- Node Breaker or similar machines should receive items in the
         -- inventory
         return old_handle_node_drops(pos, drops, player)
